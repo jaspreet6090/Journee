@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 100vh;
+  height: 100vh;
+  font-family: "Monterrat", sans-serif !important;
+}
+
+.container{
+  flex:1
+}
+.navbar {
+  height: 5rem;
+  font-size: 1.2rem;
+}
+
+.fa-solid {
+  font-size: 2rem;
+  color: rgb(255, 89, 11);
+}
+.nav-link {
+  color: rgb(56, 49, 49) !important;
+}
+.nav-link:hover {
+  color: rgb(18, 17, 17) !important;
+}
+
+.footer {
+  background-color: #605757;
+}
+.footer a,.footer p {
+  color: #ffff !important;
+}
+
+.fa-brands {
+  font-size: 1.8rem;
+}
+
+/* card */
+
+.listing-card {
+  border: none !important;
+}
+
+.card-container {
+  display: flex;
+  margin: 1rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.card-text {
+  text-align: start !important;
+  padding: 0px !important;
+}
+
+.listing-link {
+  text-decoration: none;
+}
+
+.listing-link img:hover {
+  opacity: 0.7;
+}
+
+/* show */
+.show-btns{
+  display: flex;
+  gap: 2rem;
+}
+
+.show-img{
+  width: 100%;
+ height: 20rem;
+ object-fit: fill;
+}

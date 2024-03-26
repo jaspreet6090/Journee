@@ -5,7 +5,8 @@ const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema, reviewSchema } = require("./schema.js");
+const session  = require('express-session');
+const flash = require("connect-flash");
 
 
 const listings = require("./routes/listings.js");
@@ -19,13 +20,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate)
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-})
+const sessionOptions = {
+  secret : "secret",
+  resave: false,
+  saveUninitialized : true,
+  cookie: {
+    expires : Date.now() + 1000 * 60 * 60 *24 * 7, // 1 week
+    maxAge : 1000 * 60 * 60 * 24 * 7,
+    httpOnly : true,
+  }
+}
 
 app.get('/', (req, res) => {
   res.send("Server Running");
 });
+
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+})
 
 //Database
 main().then(() => {
@@ -36,6 +49,17 @@ main().then(() => {
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
 }
+
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+})  
 
 
 

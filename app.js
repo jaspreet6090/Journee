@@ -7,10 +7,13 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
 const session  = require('express-session');
 const flash = require("connect-flash");
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require("./models/user.js");
 
-
-const listings = require("./routes/listings.js");
-const reviews = require("./routes/reviews.js");
+const listingRouter = require("./routes/listings.js");
+const reviewRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/users.js");
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -55,6 +58,18 @@ app.use(session(sessionOptions));
 app.use(flash());
 
 
+//passport
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+
+//error handling middleware
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -64,10 +79,11 @@ app.use((req, res, next) => {
 
 
 //listings
-app.use("/listings", listings);
-
+app.use("/listings", listingRouter);
 //reviews
-app.use("/listings/:id/reviews",reviews);
+app.use("/listings/:id/reviews",reviewRouter);
+//users
+app.use("/", userRouter);
 
 
 //all incoming request
@@ -84,4 +100,3 @@ app.use((err, req, res, next) => {
   // res.status(statusCode).send(message);
   // res.send("Something went wromg")
 });
-

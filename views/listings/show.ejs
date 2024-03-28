@@ -6,6 +6,7 @@
       <img src="<%=list.image%>" alt="" class="show-img" />
 
       <div class="mt-2">
+        <p><b>Owner:</b> <%= list.owner.username %></p>
         <p><b>Description:</b> <%= list.description %></p>
         <p>
           <b>Price:</b> &#x20B9; <%= list.price.toLocaleString("en-IN") %> /
@@ -13,6 +14,7 @@
         </p>
         <p><b>Location:</b> <%= list.location %> , <%= list.country %></p>
 
+        <% if(currentUser && currentUser._id.equals(list.owner._id)){ %>
         <div class="show-btns">
           <a href="/listings/<%= list._id %>/edit" class="btn btn-secondary"
             >Edit
@@ -21,7 +23,10 @@
             <button class="btn btn-danger">Delete</button>
           </form>
         </div>
+        <% } %>
+
         <div class="col-12">
+          <% if(currentUser){ %>
           <hr />
           <h4><b>Leave a Review</b></h4>
           <form
@@ -55,14 +60,15 @@
             </div>
             <button class="btn btn-outline-dark">Submit Review</button>
           </form>
-
+          <% } %>
           <hr />
+
           <h4>All Reviews</h4>
           <div class="row">
             <% for (review of list.reviews) {%>
             <div class="card col-5 ms-3 mb-2">
               <div class="card-body p-2">
-                <h5 class="card-title">Jaspreet</h5>
+                <h5 class="card-title"><%= review.author.username %></h5>
                 <p class="card-text"><%=review.rating %> ⭐</p>
                 <p class="card-text"><%= review.comment %></p>
                 <form

@@ -69,10 +69,11 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-//error handling middleware
+//local defining middleware
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currentUser = req.user;
     next();
 })  
 
@@ -95,7 +96,7 @@ app.all("*", (req, res, next) => {
 //Error handlers
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something Went Wrong" } = err;
-  console.log(message);
+  // console.log(message);
   res.render("error.ejs", { message })
   // res.status(statusCode).send(message);
   // res.send("Something went wromg")

@@ -13,9 +13,16 @@ body {
 
 .container {
   flex: 1;
+  margin-top: 5rem;  /* added this only to show navbar at top */
 }
 .navbar {
-  /* height: 5rem; */
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #d4d1d1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
   font-size: 1.2rem;
 }
 

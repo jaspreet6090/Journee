@@ -42,18 +42,26 @@ module.exports.create = async (req, res, next) => {
 module.exports.edit = async (req, res) => {
   let { id } = req.params;
   let list = await Listing.findById(id);
+  let originalImageUrl = list.image.url;
+  originalImageUrl = originalImageUrl.replace("/upload", "/upload/h_250,w_300");
   if (!list) {
     req.flash("error", "Listing not found");
     res.redirect("/listings");
   }
-  res.render("listings/edit.ejs", { list });
+  res.render("listings/edit.ejs", { list, originalImageUrl });
 }
 
 // UPDATE
 module.exports.update = async (req, res) => {
   let { id } = req.params;
-  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-  req.flash('success', 'Listing Uodated Successfully');
+  let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  if (typeof req.file !== 'undefined') {
+    let url = req.file.path;
+    let filename = req.file.filename;
+    listing.image = { url, filename };
+    await listing.save();
+  }
+  req.flash('success', 'Listing Updated Successfully');
   res.redirect(`/listings/${id}`);
 }
 

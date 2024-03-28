@@ -9,9 +9,8 @@ const listingSchema = new mongoose.Schema({
   },
   description: String,
   image: {
-    type: String,
-    default : "https://images.pexels.com/photos/161758/governor-s-mansion-montgomery-alabama-grand-staircase-161758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    set : (v) => v===""?"https://images.pexels.com/photos/161758/governor-s-mansion-montgomery-alabama-grand-staircase-161758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" : v,
+    url :String,
+    filename : String
   },
   price: Number,
   location: String,

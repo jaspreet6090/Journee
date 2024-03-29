@@ -1,4 +1,5 @@
 const Listing = require("../models/listing.js");
+const maptilerClient = require("@maptiler/client");
 
 //INDEX 
 module.exports.index = async (req, res) => {
@@ -29,10 +30,16 @@ module.exports.create = async (req, res, next) => {
   let url = req.file.path;
   let filename = req.file.filename;
 
+  let location = req.body.listing.location;
+  maptilerClient.config.apiKey = process.env.MAP_KEY;
+  // in an async function, or as a 'thenable':
+  const result = await maptilerClient.geocoding.forward(location);
+  // console.log(result.features[0].geometry);
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
-  await newListing.save();
+  newListing.geometry = result.features[0].geometry;
+    await newListing.save();
   req.flash('success', "Listing saved successfully");
   //Redirect to the index page 
   res.redirect("/listings");

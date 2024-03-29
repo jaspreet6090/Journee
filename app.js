@@ -1,6 +1,7 @@
-if(process.env.NODE_ENV !== "production"){
-  require("dotenv").config();  
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
+
 
 
 const express = require('express');
@@ -10,7 +11,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
-const session  = require('express-session');
+const session = require('express-session');
 const flash = require("connect-flash");
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -29,13 +30,13 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate)
 
 const sessionOptions = {
-  secret : "secret",
+  secret: "secret",
   resave: false,
-  saveUninitialized : true,
+  saveUninitialized: true,
   cookie: {
-    expires : Date.now() + 1000 * 60 * 60 *24 * 7, // 1 week
-    maxAge : 1000 * 60 * 60 * 24 * 7,
-    httpOnly : true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 1 week
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
   }
 }
 
@@ -76,20 +77,21 @@ passport.deserializeUser(User.deserializeUser());
 
 //local defining middleware
 app.use((req, res, next) => {
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash("error");
-    res.locals.currentUser = req.user;
-    next();
-})  
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user;
+  next();
+})
 
 
 
 //listings
 app.use("/listings", listingRouter);
 //reviews
-app.use("/listings/:id/reviews",reviewRouter);
+app.use("/listings/:id/reviews", reviewRouter);
 //users
 app.use("/", userRouter);
+
 
 
 //all incoming request

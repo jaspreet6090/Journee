@@ -13,7 +13,7 @@ body {
 
 .container {
   flex: 1;
-  margin-top: 5rem;  /* added this only to show navbar at top */
+  margin-top: 5rem; /* added this only to show navbar at top */
 }
 .navbar {
   position: fixed !important;
@@ -91,4 +91,11 @@ body {
   width: 100%;
   height: 20rem;
   object-fit: fill;
+}
+
+/* MAP */
+
+#map {
+  width: 100vh;
+  height: 400px;
 }

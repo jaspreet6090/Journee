@@ -68,6 +68,9 @@ body {
   gap: 1.5rem;
 }
 
+.listing-card {
+  width: 15rem;
+}
 .card-text {
   text-align: start !important;
   padding: 0px !important;

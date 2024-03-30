@@ -9,7 +9,7 @@
   <div class="card-container">
     <% for(list of allListings){ %>
     <a href="/listings/<%= list._id %>" class="listing-link">
-      <div class="card listing-card" style="width: 18rem">
+      <div class="card listing-card" >
         <img
           src="<%=list.image.url%>"
           alt="<%= list.image.filename %>"

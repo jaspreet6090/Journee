@@ -39,7 +39,7 @@ const sessionOptions = {
 }
 
 app.get('/', (req, res) => {
-  res.send("Server Running");
+  res.redirect("/listings");
 });
 
 

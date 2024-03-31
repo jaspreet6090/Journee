@@ -23,8 +23,16 @@
       
       <div class="search-container">
         <form class="form-inline search">
-          <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search here!" aria-label="Search">
-          <button class="btn  my-2 my-sm-0 search-btn" type="submit"><i class="fa-solid fa-magnifying-glass "></i>Search</button>
+          <input class="form-control mr-sm-2 search-bar" list="datalistOptions" id="exampleDataList" type="search" placeholder="Search here!" aria-label="Search">
+          <datalist id="datalistOptions">
+            <option value="Rooms">
+            <option value="Homes">
+            <option value="Hotels">
+            <option value="Resorts">
+            <option value="Mountains">
+            <option value="Boats">
+          </datalist>
+          <button class="btn  my-2 my-sm-0 search-btn"  type="submit"><i class="fa-solid fa-magnifying-glass "></i>Search</button>
         </form>
       </div>
       <div class="navbar-nav ms-auto">

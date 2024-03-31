@@ -10,6 +10,7 @@
         novalidate
         enctype="multipart/form-data"
       >
+      
         <div class="mb-2">
           <label for="title" class="form-label">Title:</label>
           <input
@@ -21,6 +22,22 @@
           />
           <div class="invalid-feedback">Please enter a Title.</div>
         </div>
+        
+        <div class="mb-2">
+          <label for="category" class="form-label">Category:</label>
+          <select class="form-select  " aria-label="Default select example"  name="listing[category]" required>
+            <option value="">Select Category</option>
+            <option value="1">Rooms</option>
+            <option value="2">Homes</option>
+            <option value="3">Hotels</option>
+            <option value="4">Resorts</option>
+            <option value="5">Mountains</option>
+            <option value="6">Boats</option>
+          </select>
+          <div class="invalid-feedback">Please Select a Category.</div>
+        </div>
+        
+       
         <div class="mb-2">
           <label for="description" class="form-label">Description</label>
           <textarea
@@ -29,8 +46,10 @@
             class="form-control"
             required
           ></textarea>
+
           <div class="invalid-feedback">Please enter a description.</div>
         </div>
+
         <div class="row">
           <div class="mb-2 col-6">
             <label for="price" class="form-label">Price:</label>

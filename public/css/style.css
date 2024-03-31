@@ -3,6 +3,9 @@ body {
   height: 100%;
 }
 
+:root{
+  --primary-color: #FF3B00;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -33,11 +36,11 @@ body {
 .navbar-brand{
   display: flex !important;
   gap: 1rem;
-  color: rgb(255, 89, 11);
+  color: var(--primary-color);
 }
 
 .navbar-brand:hover{
-  color: rgb(255, 89, 11) !important;
+  color: var(--primary-color) !important;
 }
 .navbar-brand i {
   font-size: 2rem;
@@ -47,7 +50,7 @@ body {
   color: rgb(42, 42, 42) !important;
 }
 .nav-link:hover {
-  color: rgb(255, 89, 11) !important;
+  color: var(--primary-color) !important;
 }
 
 .footer {
@@ -127,19 +130,19 @@ body {
   margin-right: 1rem;
   border-radius: 20px;
   border: 1px solid rgb(82, 82, 82);
-  color: rgb(255, 89, 11);
+  color: var(--primary-color);
 }
 .search-btn {
   display: flex;
   align-items: center;
   border-radius: 20px;
-  color: rgb(255, 89, 11);
-  border: 1px solid rgb(255, 89, 11);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 
 .search-btn:hover {
   color: white;
-  background-color: rgb(255, 89, 11);
+  background-color: var(--primary-color);
 }
 
 .search-btn .fa-solid {
@@ -192,3 +195,14 @@ body {
   height: 2rem;
   margin-right: 10px;
 }
+
+  /* Media query for small screens */
+  @media screen and (max-width: 768px) {
+    .filters {
+      display: none; /* Hide filters on small screens */
+    }
+
+    .show-filters-btn {
+      display: block; /* Show button on small screens */
+    }
+  }

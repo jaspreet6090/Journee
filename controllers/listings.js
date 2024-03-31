@@ -29,7 +29,8 @@ module.exports.new = (req, res) => {
 module.exports.create = async (req, res, next) => {
   let url = req.file.path;
   let filename = req.file.filename;
-
+  let category = req.body.listing.category;
+  console.log(category);
   let location = req.body.listing.location;
   maptilerClient.config.apiKey = process.env.MAP_KEY;
   // in an async function, or as a 'thenable':
@@ -38,6 +39,7 @@ module.exports.create = async (req, res, next) => {
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
+  newListing.category = category;
   newListing.geometry = result.features[0].geometry;
     await newListing.save();
   req.flash('success', "Listing saved successfully");

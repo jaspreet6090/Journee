@@ -12,7 +12,7 @@ router.route("/")
   //Index routes
   .get(wrapAsync(listingController.index))
   //Create Route
-  .post(isLoggedIn, upload.single("listing[image]"), validateListings, wrapAsync(listingController.create));
+  .post(isLoggedIn, upload.single("listing[image]"), wrapAsync(listingController.create));
   
 
 //New Route

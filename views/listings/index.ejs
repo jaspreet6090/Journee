@@ -29,7 +29,7 @@
   </div>
 
    <!-- Tax -->
-   <div class="btn btn-outline-dark">
+   <div class="btn btn-outline-dark mb-2 " id="tax-btn">
     <div class="form-check form-switch">
       <input
         class="form-check-input"
@@ -45,7 +45,7 @@
 
 
   <div class="dropdown">
-    <button class="show-filters-btn btn btn-outline-dark  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Show Filters</button>
+    <button class="show-filters-btn btn btn-outline-dark  dropdown-toggle mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Show Filters</button>
 
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
   
@@ -87,10 +87,35 @@
         <p><b><%= list.title %></b></p>
         <p class="card-text">
           &#x20B9; <%= list.price.toLocaleString("en-IN") %>/ Night
+          <i class="tax-display">+18%GST</i>
         </p>
+        <p><i>in</i> <%- list.location %></p>
       </div>
     </div>
   </a>
 
   <% } %>
 </div>
+
+<script>
+  let tax_btn = document.getElementById("tax-btn");
+
+  tax_btn.addEventListener("click", () => {
+    let card_bodies = document.querySelectorAll(".card-body");
+
+    card_bodies.forEach(card_body => {
+      let tax_display = card_body.querySelector(".tax-display");
+
+      // Check if the element exists
+      if (tax_display) {
+        if (tax_display.style.display === "none" || tax_display.style.display === "") {
+          tax_display.style.display = "inline"; // Displaying tax info
+        } else {
+          tax_display.style.display = "none"; // Hiding tax info
+        }
+      } else {
+        console.error("Tax display element not found within card body");
+      }
+    });
+  });
+</script>

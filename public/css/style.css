@@ -91,6 +91,10 @@ body {
   padding: 0px !important;
 }
 
+.tax-display{
+  display: none;
+}
+
 .listing-link {
   text-decoration: none;
 }

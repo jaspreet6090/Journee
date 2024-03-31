@@ -24,17 +24,30 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 10;
   font-size: 1.2rem;
+  align-items: center;
+  justify-content: center;
+ 
+  
 }
 
-.fa-solid {
-  font-size: 2rem;
+.navbar-brand{
+  display: flex !important;
+  gap: 1rem;
   color: rgb(255, 89, 11);
 }
+
+.navbar-brand:hover{
+  color: rgb(255, 89, 11) !important;
+}
+.navbar-brand i {
+  font-size: 2rem;
+}
+
 .nav-link {
   color: rgb(42, 42, 42) !important;
 }
 .nav-link:hover {
-  color: rgb(252, 59, 59) !important;
+  color: rgb(255, 89, 11) !important;
 }
 
 .footer {
@@ -58,6 +71,7 @@ body {
 /* card */
 
 .listing-card {
+  width: 15rem;
   border: none !important;
 }
 
@@ -65,12 +79,13 @@ body {
   display: flex;
   margin: 1rem;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap:1.5rem
 }
 
-.listing-card {
-  width: 15rem;
-}
+/* .card-container a {
+  
+  height: 20rem;
+} */
 .card-text {
   text-align: start !important;
   padding: 0px !important;
@@ -101,4 +116,82 @@ body {
 #map {
   width: 100vh;
   height: 400px;
+}
+
+.search-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+.search {
+  display: flex;
+  align-items: center;
+}
+.search-bar {
+  margin-right: 1rem;
+  border-radius: 20px;
+  border: 1px solid rgb(82, 82, 82);
+  color: rgb(255, 89, 11);
+}
+.search-btn {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  color: rgb(255, 89, 11);
+  border: 1px solid rgb(255, 89, 11);
+}
+
+.search-btn:hover {
+  color: white;
+  background-color: rgb(255, 89, 11);
+}
+
+.search-btn .fa-solid {
+  margin-right: 0.5rem;
+}
+
+
+/* Filter */
+.nav2-container{
+  display: flex;
+  justify-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 1rem 1rem 1rem;
+  height: 120px;
+}
+.filters {
+ margin-left: 2rem;
+ width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 3rem; */
+  justify-content: space-between !important;
+}
+
+.filter {
+  opacity: 0.7;
+}
+.filter:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.filter img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.filter p {
+  margin-top: 0.5rem;
+}
+
+.show-filters-btn {
+  display: none;
+}
+
+/* dropdown */
+.dropdown-menu a img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 10px;
 }

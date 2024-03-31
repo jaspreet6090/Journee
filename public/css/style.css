@@ -71,7 +71,7 @@ body {
 /* card */
 
 .listing-card {
-  width: 15rem;
+  width: 18rem;
   border: none !important;
 }
 
@@ -79,13 +79,10 @@ body {
   display: flex;
   margin: 1rem;
   flex-wrap: wrap;
-  gap:1.5rem
+  gap: 2rem;
 }
 
-/* .card-container a {
-  
-  height: 20rem;
-} */
+
 .card-text {
   text-align: start !important;
   padding: 0px !important;

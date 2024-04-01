@@ -14,6 +14,8 @@ const flash = require("connect-flash");
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require("./models/user.js");
+const MongoStore =  require("connect-mongo");
+
 
 const listingRouter = require("./routes/listings.js");
 const reviewRouter = require("./routes/reviews.js");
@@ -27,8 +29,37 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate)
 
+//Database
+const atlasDb_Url = process.env.MONGODB_ATLAS_URL;
+
+main().then(() => {
+  console.log("Database Connected");
+})
+  .catch(err => console.log(err));
+
+
+async function main() {
+  await mongoose.connect(atlasDb_Url);
+}
+
+
+
+
+const store = MongoStore.create({
+  mongoUrl: atlasDb_Url,
+  crypto : {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 60 * 60,// 1 day 
+})
+
+store.on("error", function(e) {
+  console.log("SESSION STORE ERROR", e)
+})
+
 const sessionOptions = {
-  secret: "secret",
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -37,7 +68,6 @@ const sessionOptions = {
     httpOnly: true,
   }
 }
-
 app.get('/', (req, res) => {
   res.redirect("/listings");
 });
@@ -47,15 +77,6 @@ app.listen(3000, () => {
   console.log("Server is running on port 3000");
 })
 
-//Database
-main().then(() => {
-  console.log("Database Connected");
-})
-  .catch(err => console.log(err));
-
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
-}
 
 
 app.use(session(sessionOptions));

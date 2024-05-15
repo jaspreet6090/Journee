@@ -26,7 +26,7 @@ module.exports.new = (req, res) => {
 }
 
 // CREATE
-module.exports.create = async (req, res) => {
+module.exports.create = async (req, res, ) => {
   let url = req.file.path;
   let filename = req.file.filename;
   let category = req.body.listing.category;

@@ -7,8 +7,7 @@ Journee is a dynamic web application inspired by the user-friendly experience of
 - [Project Description](#project-description)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Project Description
 
